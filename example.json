@@ -1,0 +1,36 @@
+{
+  "nodes": [
+    {
+      "id": "A",
+      "text": "User clicks"
+    },
+    {
+      "id": "B",
+      "text": "Is logged ins?"
+    },
+    {
+      "id": "C",
+      "text": "Show dashboard"
+    },
+    {
+      "id": "D",
+      "text": "Redirect to login"
+    }
+  ],
+  "edges": [
+    {
+      "from": "A",
+      "to": "B"
+    },
+    {
+      "from": "B",
+      "to": "C",
+      "label": "Yes"
+    },
+    {
+      "from": "B",
+      "to": "D",
+      "label": "No"
+    }
+  ]
+}
