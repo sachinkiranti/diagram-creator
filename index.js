@@ -23,6 +23,18 @@
 
     editor.on("change", render);
     render();
+
+    const params = new URLSearchParams(window.location.search);
+    const jsonUrl = params.get('jsonUrl');
+    if (jsonUrl) {
+    document.getElementById('jsonUrl').value = jsonUrl;
+    fetch(jsonUrl)
+        .then(res => res.json())
+        .then(data => {
+        editor.setValue(JSON.stringify(data, null, 2));
+        })
+        .catch(() => alert("Invalid or inaccessible JSON from query param."));
+    }
   };
 
   async function loadJsonFromUrl() {
