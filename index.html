@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JSON to Diagram</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5/lib/codemirror.css" />
+  <script src="https://cdn.jsdelivr.net/npm/codemirror@5/lib/codemirror.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/codemirror@5/mode/javascript/javascript.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvg@3.0.7/lib/umd.min.js"></script>
+
+
+  <script>
+  mermaid.initialize({ startOnLoad: false });
+  </script>
+  <style>
+    body { font-family: sans-serif; margin: 0; display: flex; height: 100vh; }
+    #editor { width: 50%; height: 100%; }
+    #preview { width: 50%; overflow: auto; padding: 10px; background: #f9f9f9; }
+    .CodeMirror { height: 100% !important; font-size: 14px; }
+    .controls { position: fixed; bottom: 10px; left: 10px; z-index: 999; display: flex; gap: 10px; }
+    button, input[type="url"] { padding: 5px 10px; }
+
+    #imgOverlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="controls">
+  <input type="url" id="jsonUrl" placeholder="https://example.com/flow.json" style="width:300px">
+  <button onclick="loadJsonFromUrl()">Load JSON</button>
+  <button onclick="downloadJson()">💾 JSON</button>
+  <button onclick="downloadPng()">📷 PNG</button>
+  <button onclick="downloadSvg()">📷 SVG</button>
+  <button onclick="copyImage()">📋 Copy</button>
+</div>
+
+<div id="editor"></div>
+<div id="preview"><div id="diagram" class="mermaid"></div></div>
+<hr>
+<div id="imagePreview" style="padding:10px; border:1px solid #ccc; min-height:80px;"></div>
+<script src="index.js"></script>
+</body>
+</html>
